@@ -158,7 +158,14 @@ export const AddCarForm = () => {
       setValue("color", carDetails.color || "");
       setValue("bodyType", carDetails.bodyType || "");
       setValue("fuelType", carDetails.fuelType || "");
-      setValue("price", carDetails.price?.toString() || "");
+      //setValue("price", carDetails.price?.toString() || "");
+      /*setValue(
+        "price",
+        carDetails.price
+          ? carDetails.price.toString().replace(/[^0-9.]/g, "")
+          : ""
+      );*/
+      setValue("price", carDetails.price);
       setValue("mileage", carDetails.mileage?.toString() || "");
       setValue("transmission", carDetails.transmission || "");
       setValue("description", carDetails.description || "");
@@ -288,14 +295,42 @@ export const AddCarForm = () => {
     }
 
     // Prepare data for server action
-    const carData = {
+    /*const carData = {
       ...data,
 
       year: parseInt(data.year),
       price: parseFloat(data.price),
       mileage: parseInt(data.mileage),
       seats: data.seats ? parseInt(data.seats) : null,
+    };*/
+    /*onst carData = {
+      ...data,
+      year: Number(data.year),
+      mileage: Number(data.mileage),
+      seats: data.seats ? Number(data.seats) : null,
+      price: Number(
+        data.price
+          .toString()
+          .replace(/[^0-9.]/g, "")
+      ),
     };
+    */
+    const carData = {
+      ...data,
+
+      year: Number(data.year),
+
+      price: data.price
+        ? Number(data.price.toString().replace(/[^0-9.]/g, ""))
+        : null,
+
+      mileage: data.mileage && !isNaN(data.mileage)
+        ? Number(data.mileage)
+        : null,
+
+      seats: data.seats ? Number(data.seats) : null,
+    };
+
 
     // Call the addCar function with our useFetch hook
     await addCarFn({
