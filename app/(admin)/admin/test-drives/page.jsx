@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { TestDrivesList } from "./_components/test-drive-list";
 
 export const metadata = {
