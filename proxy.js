@@ -19,7 +19,7 @@ const aj = arcjet({
   ],
 });
 
-export default async function middleware(req) {
+export default async function proxy(req) {
   // Arcjet minimal protection
   await aj.protect(req);
 
@@ -34,13 +34,3 @@ export default async function middleware(req) {
     return NextResponse.next();
   })(req);
 }
-
-export const runtime = "edge";
-
-export const config = {
-  matcher: [
-    "/((?!.+\\.[\\w]+$|_next).*)",
-    "/",
-    "/(api|trpc)(.*)",
-  ],
-};
