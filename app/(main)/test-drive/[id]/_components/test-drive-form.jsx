@@ -278,7 +278,7 @@ export function TestDriveForm({ car, testDriveInfo }) {
                         <h2 className="text-xl font-bold mb-4">Dealership Info</h2>
                         <div className="text-sm">
                             <p className="font-medium">
-                                {dealership?.name || "Vehiql Motors"}
+                                {dealership?.name || "FindMyRide-AI Motors"}
                             </p>
                             <p className="text-gray-600 mt-1">
                                 {dealership?.address || "Address not available"}
